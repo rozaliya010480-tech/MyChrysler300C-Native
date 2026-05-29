@@ -19,7 +19,7 @@ jobs:
 
       - name: Unzip project
         run: |
-          unzip -o MyChrysler300C_NATIVE_PRO_PROJECT.zip
+          unzip -o MyChrysler300C_NATIVE_PRO_V11_PROJECT.zip
 
       - name: Show files
         run: |
@@ -27,11 +27,11 @@ jobs:
 
       - name: Build APK
         run: |
-          cd MyChrysler300C_NATIVE_PRO
+          cd MyChrysler300C_NATIVE_PRO_V11
           gradle assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: MyChrysler300C-apk
-          path: MyChrysler300C_NATIVE_PRO/app/build/outputs/apk/debug/*.apk
+          path: MyChrysler300C_NATIVE_PRO_V11/app/build/outputs/apk/debug/*.apk
