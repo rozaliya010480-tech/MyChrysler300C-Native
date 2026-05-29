@@ -1,0 +1,38 @@
+name: Build Android APK
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Unzip project
+        run: |
+          unzip -o MyChrysler300C_NATIVE_PRO.zip
+
+      - name: Show files
+        run: |
+          ls -R
+
+      - name: Build APK
+        run: |
+          cd MyChrysler300C_NATIVE_PRO
+          chmod +x gradlew || true
+          ./gradlew assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: MyChrysler300C-apk
+          path: MyChrysler300C_NATIVE_PRO/app/build/outputs/apk/debug/*.apk
