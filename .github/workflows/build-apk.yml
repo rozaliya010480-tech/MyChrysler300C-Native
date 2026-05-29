@@ -17,9 +17,9 @@ jobs:
 
       - uses: android-actions/setup-android@v3
 
-      - name: Unzip project
+      - name: Unzip PWA APK project
         run: |
-          unzip -o MyChrysler300C_NATIVE_PRO_V11_PROJECT.zip
+          unzip -o MyChrysler300C_PWA_APK_V12_PROJECT.zip
 
       - name: Show files
         run: |
@@ -27,11 +27,11 @@ jobs:
 
       - name: Build APK
         run: |
-          cd MyChrysler300C_NATIVE_PRO_V11
+          cd MyChrysler300C_PWA_APK_V12
           gradle assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: MyChrysler300C-apk
-          path: MyChrysler300C_NATIVE_PRO_V11/app/build/outputs/apk/debug/*.apk
+          name: MyChrysler300C-PWA-APK-V12
+          path: MyChrysler300C_PWA_APK_V12/app/build/outputs/apk/debug/*.apk
