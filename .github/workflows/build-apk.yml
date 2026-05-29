@@ -17,17 +17,21 @@ jobs:
 
       - uses: android-actions/setup-android@v3
 
+      - name: Unzip project
+        run: |
+          unzip -o MyChrysler300C_NATIVE_PRO_PROJECT.zip
+
       - name: Show files
         run: |
           ls -R
 
       - name: Build APK
         run: |
-          chmod +x gradlew || true
-          ./gradlew assembleDebug
+          cd MyChrysler300C_NATIVE_PRO
+          gradle assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: MyChrysler300C-apk
-          path: app/build/outputs/apk/debug/*.apk
+          path: MyChrysler300C_NATIVE_PRO/app/build/outputs/apk/debug/*.apk
